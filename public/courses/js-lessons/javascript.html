@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Погружение в JavaScript – Аниме-Академия</title>
+  <!-- Подключаем Google Fonts (Bangers) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <!-- Подключаем Animate.css для анимаций -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    /* Сброс базовых отступов и настроек */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Bangers', cursive;
+      background: linear-gradient(135deg, #3c1053, #ad5389); /* Градиент (фиолетовые/розовые оттенки) */
+      background-size: 200% 200%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      text-shadow: 3px 3px 0 #000;
+    }
+
+    .intro-text {
+      font-size: 1.8rem;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto 50px auto;
+    }
+
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .lesson-card {
+      background: rgba(0, 0, 0, 0.6);
+      border: 3px solid #ffcb05;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeInUp 1s ease;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+    }
+
+    .lesson-card h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #ffcb05; /* Яркий желтый */
+      text-shadow: 2px 2px 0 #000;
+    }
+
+    .lesson-card p {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .lesson-card a {
+      display: inline-block;
+      background: #ff0055;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 1.4rem;
+      border-radius: 5px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .lesson-card a:hover {
+      background: #ff3366;
+      transform: scale(1.05);
+    }
+    
+    header {
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+  width: 100%; /* Растягиваем на всю ширину экрана */
+  padding: 20px 15px; /* Внутренние отступы */
+
+  position: relative; /* Обычное позиционирование для блока */
+  z-index: 10; /* Чтобы было наверху */
+  text-align: center; /* Выравнивание текста по центру */
+}
+
+header h1 {
+  font-family: 'Bangers', cursive;
+  font-size: 4rem;
+  text-shadow: 3px 3px 0 #ff0055; /* Тень для текста */
+
+  color: white;
+}
+
+header p {
+  font-size: 2rem;
+  max-width: 800px;
+  margin: 10px auto;
+
+  color: white;
+}
+
+nav {
+  background: rgba(0, 0, 0, 0.5); /* Чуть светлее */
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  margin-top: -20px; /* Пространство после header */
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* Расстояние между ссылками */
+  padding: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: #ffcc00; /* Более контрастный цвет */
+  font-size: 1.9em;
+  transition: color 0.3s; /* Плавное изменение цвета */
+}
+
+nav a:hover {
+  color: #ff0055; /* Цвет ссылки при наведении */
+}
+
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/courses/courses.html">Курсы</a></li>
+        <li><a href="/profile.html">Профиль</a></li>
+        <li><a href="/courses/courses.html">Выйти</a></li>
+      </ul>
+    </nav>
+  <div class="container animate__animated animate__fadeInUp">
+    <h1>Погружение в JavaScript</h1>
+    <p class="intro-text">
+      Добро пожаловать в мир JavaScript — язык, который оживляет веб-страницы и придаёт им интерактивность!  
+      Здесь ты научишься писать код, обрабатывать события, работать с DOM и даже создавать мини-приложения.  
+      Готов к новым вызовам и удивительным возможностям? Тогда вперёд!
+    </p>
+
+    <div class="lessons-grid">
+      <!-- Урок 1 -->
+      <div class="lesson-card" style="animation-delay: 0.2s;">
+        <h2>Урок 1</h2>
+        <p>Введение в JavaScript: основы языка, переменные и простейшие операции.</p>
+        <a href="1-lessonjs.html">Начать урок</a>
+      </div>
+      <!-- Урок 2 -->
+      <div class="lesson-card" style="animation-delay: 0.4s;">
+        <h2>Урок 2</h2>
+        <p>Функции и области видимости: научись структурировать код и избегать ошибок.</p>
+        <a href="2-lessonjs.html">Начать урок</a>
+      </div>
+      <!-- Урок 3 -->
+      <div class="lesson-card" style="animation-delay: 0.6s;">
+        <h2>Урок 3</h2>
+        <p>Массивы и объекты: храним и обрабатываем сложные данные.</p>
+        <a href="3-lessonjs.html">Начать урок</a>
+      </div>
+      <!-- Урок 4 -->
+      <div class="lesson-card" style="animation-delay: 0.8s;">
+        <h2>Урок 4</h2>
+        <p>DOM и события: оживляем веб-страницы, реагируя на действия пользователя.</p>
+        <a href="4-lessonjs.html">Начать урок</a>
+      </div>
+      <!-- Урок 5 -->
+      <div class="lesson-card" style="animation-delay: 1s;">
+        <h2>Урок 5</h2>
+        <p>Асинхронность: колбэки, промисы и async/await. Учимся писать быстрый код.</p>
+        <a href="5-lessonjs.html">Начать урок</a>
+      </div>
+      <!-- Урок 6 -->
+      <div class="lesson-card" style="animation-delay: 1.2s;">
+        <h2>Урок 6</h2>
+        <p>Практика и проекты: закрепляем знания, создаём мини-приложения и игры.</p>
+        <a href="6-lessonjs.html">Начать урок</a>
+      </div>
+      <!-- Урок 7 -->
+        <div class="lesson-card" style="animation-delay: 1.6s;">
+        <h2>Урок 7</h2>
+        <p>Проекты и продвинутые фичи: закрепляем всё, становимся настоящим JavaScript-мастером!</p>
+        <a href="7-lessonjs.html">Начать урок</a>
+      </div>
+      <!-- Можно добавить ещё карточки при необходимости -->
+    </div>
+  </div>
+</body>
+</html>

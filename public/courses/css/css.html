@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Погружение в CSS</title>
+  <style>
+    /* Базовые стили */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Темная тема */
+    body {
+      background-color: #000;    /* Черный фон */
+      color: #fff;               /* Белый текст */
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Контейнер */
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Заголовок */
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #00bfff, #0080ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Введение */
+    .intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 60px;
+      font-size: 1.1rem;
+    }
+
+    /* Карточки уроков */
+    .lessons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    /* Оформление карточки */
+    .lesson-card {
+      border: 2px solid transparent;
+      border-image: linear-gradient(to right, #00bfff, #0080ff) 1;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Заголовок урока */
+    .lesson-card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: #00bfff;
+    }
+
+    /* Описание */
+    .lesson-card p {
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    /* Кнопка */
+    .lesson-card a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(to right, #00bfff, #0080ff);
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 4px;
+      transition: opacity 0.2s;
+    }
+
+    .lesson-card a:hover {
+      opacity: 0.9;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .intro {
+        font-size: 1rem;
+        margin-bottom: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <!-- Заголовок -->
+    <h1>Погружение в CSS</h1>
+
+    <!-- Введение -->
+    <div class="intro">
+      <p>
+        Добро пожаловать в мир CSS! Здесь ты научишься стилизовать веб-страницы, делать анимации и работать с макетами. Готов погрузиться в волшебный мир стилей? Тогда начнем!
+      </p>
+    </div>
+
+    <!-- Сетка карточек -->
+    <div class="lessons">
+      <div class="lesson-card">
+        <h2>Урок 1</h2>
+        <p>Основы CSS: селекторы, свойства и значения.</p>
+        <a href="#">Начать урок</a>
+      </div>
+
+      <div class="lesson-card">
+        <h2>Урок 2</h2>
+        <p>Классы, идентификаторы и вложенные стили.</p>
+        <a href="#">Начать урок</a>
+      </div>
+
+      <div class="lesson-card">
+        <h2>Урок 3</h2>
+        <p>Гибкость макета: Flexbox и Grid.</p>
+        <a href="#">Начать урок</a>
+      </div>
+
+      <div class="lesson-card">
+        <h2>Урок 4</h2>
+        <p>Градиенты, тени и анимации в CSS.</p>
+        <a href="#">Начать урок</a>
+      </div>
+
+      <div class="lesson-card">
+        <h2>Урок 5</h2>
+        <p>CSS для адаптивного дизайна: медиа-запросы.</p>
+        <a href="#">Начать урок</a>
+      </div>
+
+      <div class="lesson-card">
+        <h2>Урок 6</h2>
+        <p>Псевдоклассы и псевдоэлементы.</p>
+        <a href="#">Начать урок</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

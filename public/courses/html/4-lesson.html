@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Урок 4: Работа с изображениями и мультимедиа</title>
+    <style>
+        /* ---------- Общие стили для страницы ---------- */
+        body {
+            margin: 0;
+            padding: 0;
+            background: #1a1a1a url('https://avatars.mds.yandex.net/i?id=5b860fd5bc29f0eee5c97a36d8a083ad_l-5303693-images-thumbs&ref=rim&n=13&w=1280&h=720') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .lesson-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 10px;
+        }
+        h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            text-shadow: 2px 2px 0 #ff0055;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        .tabs a {
+            color: #ffcb05;
+            text-decoration: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .tabs a:hover {
+            color: #ff0055;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            color: #000;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+        }
+        th {
+            background: #f4a42d;
+            color: #fff;
+        }
+        .correct {
+            color: #4CAF50;
+        }
+        .incorrect {
+            color: #ff3333;
+        }
+        /* Дополнительные стили для раздела с теорией */
+        .theory-section h2 {
+            margin-top: 0;
+        }
+        .theory-section ul {
+            margin: 0 0 1em 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="lesson-container">
+    <h1>Урок 4: Работа с изображениями и мультимедиа</h1>
+    <p>В этом уроке вы изучите, как вставлять изображения, аудио и видео в HTML, а также узнаете о настройке размеров, использовании альтернативного текста и создании встроенных плееров для медиа-контента.</p>
+
+    <nav class="tabs">
+        <a id="doc-tab">Документ</a>
+        <a id="video-tab">Видео</a>
+        <a id="tasks-tab">Задания</a>
+    </nav>
+
+    <!-- Секция с теорией -->
+    <div id="document-section" class="content-section active theory-section">
+        <h2>Теория</h2>
+        <p>HTML предоставляет ряд элементов для работы с изображениями и мультимедиа. Ниже приведены основные теги и атрибуты, которые вам необходимо знать:</p>
+        
+        <h3>Изображения</h3>
+        <ul>
+            <li>
+                <strong>&lt;img&gt;</strong> — используется для вставки изображений. Обязательный атрибут — <code>src</code> (путь к файлу изображения).
+            </li>
+            <li>
+                Атрибут <code>alt</code> задаёт альтернативный текст для изображения, что улучшает доступность и SEO.
+            </li>
+            <li>
+                Атрибуты <code>width</code> и <code>height</code> позволяют задать размеры изображения.
+            </li>
+        </ul>
+
+        <h3>Аудио</h3>
+        <ul>
+            <li>
+                <strong>&lt;audio&gt;</strong> — позволяет встроить аудио на страницу. Основной атрибут — <code>src</code> для указания пути к аудиофайлу.
+            </li>
+            <li>
+                Атрибут <code>controls</code> добавляет элементы управления воспроизведением (плей, пауза, регулировка громкости и т.д.).
+            </li>
+            <li>
+                Можно использовать вложенный тег <strong>&lt;source&gt;</strong> для указания нескольких форматов аудио.
+            </li>
+        </ul>
+
+        <h3>Видео</h3>
+        <ul>
+            <li>
+                <strong>&lt;video&gt;</strong> — используется для вставки видео. Задаётся с помощью атрибута <code>src</code> или вложенных тегов <strong>&lt;source&gt;</strong>.
+            </li>
+            <li>
+                Атрибут <code>controls</code> добавляет панель управления видео (кнопки воспроизведения, перемотки и т.д.).
+            </li>
+            <li>
+                Атрибуты <code>width</code> и <code>height</code> задают размеры плеера.
+            </li>
+        </ul>
+
+        <p>Используя эти элементы, вы можете создавать интерактивный мультимедийный контент на своих веб-страницах, делая их более информативными и привлекательными для пользователей.</p>
+    </div>
+
+    <!-- Секция с видео -->
+    <div id="video-section" class="content-section">
+        <h2>Видео урок</h2>
+        <p>Посмотрите видео о работе с изображениями и мультимедиа в HTML.</p>
+        <div style="text-align:center;">
+            <iframe width="640" height="360" src="https://drive.google.com/file/d/1IrISM_OGbt7wdaWbPIJPNsbXRmaqD5H0/preview" 
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+         </div>
+    </div>
+    <!-- Секция с заданиями -->
+    <div id="tasks-section" class="content-section">
+        <h1>Тест по работе с изображениями и мультимедиа</h1>
+        <form id="quizForm">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:60%;">Вопрос</th>
+                        <th style="width:40%;">Ваш ответ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Каким тегом подключаются изображения?</td>
+                        <td><input type="text" name="q1"></td>
+                    </tr>
+                    <tr>
+                        <td>Как подключать аудио в HTML?</td>
+                        <td><input type="text" name="q2"></td>
+                    </tr>
+                    <tr>
+                        <td>Как подключать видео в HTML?</td>
+                        <td><input type="text" name="q3"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" onclick="checkAnswers()">Отправить</button>
+        </form>
+        <h2 id="result"></h2>
+    </div>
+</div>
+
+<script>
+function checkAnswers() {
+    // Пример "жёстких" ответов (они должны совпадать точно)
+    let answers = {
+        q1: "<img src=\"...\">",
+        q2: "<audio src=\"audio.mp3\" controls></audio>",
+        q3: "<video src=\"video.mp4\" controls></video>"
+    };
+
+    let form = document.getElementById("quizForm");
+    let resultText = "";
+    let score = 0;
+
+    // Перебираем ключи объекта answers
+    for (let key in answers) {
+        let userAnswer = form.elements[key].value.trim();
+        if (userAnswer === answers[key]) {
+            score += 10;
+            resultText += `<p class='correct'>✅ Ответ на вопрос "${key}" — верный! (+10 баллов)</p>`;
+        } else {
+            resultText += `<p class='incorrect'>❌ Ответ на вопрос "${key}" — неверный. Правильный ответ: <strong>${answers[key]}</strong></p>`;
+        }
+    }
+
+    resultText += `<br><strong>Итоговый балл: ${score}</strong>`;
+    document.getElementById("result").innerHTML = resultText;
+
+    // Сохраняем результат для урока 4 в localStorage
+    localStorage.setItem("lesson4Score", score);
+}
+
+function markVideoWatched(videoElement) {
+    let videoId = videoElement.getAttribute('data-video-id');
+    if (!localStorage.getItem("video" + videoId + "_watched")) {
+        localStorage.setItem("video" + videoId + "_watched", "true");
+
+        // Добавляем 1 балл за просмотр видео
+        let score = parseInt(localStorage.getItem("lesson4Score")) || 0;
+        score += 1;
+        localStorage.setItem("lesson4Score", score);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    function showSection(sectionId) {
+        document.querySelectorAll(".content-section").forEach(section => {
+            section.style.display = "none";
+        });
+        document.getElementById(sectionId).style.display = "block";
+    }
+
+    document.getElementById("doc-tab").addEventListener("click", () => showSection("document-section"));
+    document.getElementById("video-tab").addEventListener("click", () => showSection("video-section"));
+    document.getElementById("tasks-tab").addEventListener("click", () => showSection("tasks-section"));
+
+    // Показываем секцию "Документ" по умолчанию
+    showSection("document-section");
+});
+</script>
+</body>
+</html>

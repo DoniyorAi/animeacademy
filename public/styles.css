@@ -1,0 +1,230 @@
+/* Сбрасываем стандартные стили (по желанию) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Устанавливаем фоновое изображение для всего сайта */
+body {
+  font-family: 'Press Start 2P', cursive;
+  background: url('https://cdn1.ozone.ru/s3/multimedia-5/6659640185.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  
+}
+
+/* Шапка сайта */
+header {
+  background-color: rgba(0, 0, 0, 0.7); /* полупрозрачный фон */
+  padding: 20px;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+header nav a {
+  text-decoration: none;
+  color: #ffcb05; /* желтый цвет (часто встречается в аниме-стиле) */
+  transition: color 0.3s;
+}
+
+header nav a:hover {
+  color: #ff0055; /* розоватый цвет при наведении */
+}
+
+.anime-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #ffcb05;
+  text-shadow: 2px 2px 0 #ff0055, 4px 4px 0 #000;
+}
+
+/* Главный блок (hero) */
+.hero {
+  text-align: center;
+  margin: 50px 0;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 3px solid #ffcb05;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  background-color: #ff0055;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.cta-button:hover {
+  transform: scale(1.1);
+}
+
+/* Раздел курсов */
+.courses {
+  text-align: center;
+  margin: 30px auto;
+  max-width: 1000px;
+}
+
+.courses h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.course-card {
+  background-color: rgba(0, 0, 0, 0.6);
+  margin: 10px auto;
+  padding: 20px;
+  width: 80%;
+  border: 2px solid #ffcb05;
+  border-radius: 5px;
+  color: #fff;
+}
+.course-card h3{
+  font-size: 1.4rem;
+}
+.course-card p{
+  font-size: 1.2rem;
+}
+
+.course-card h3 {
+  color: #ffcb05;
+  margin-bottom: 10px;
+}
+
+/* Раздел регистрации */
+.registration {
+  text-align: center;
+  margin: 50px auto;
+  max-width: 500px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 3px solid #ffcb05;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.registration h2 {
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.registration label {
+  display: block;
+  text-align: left;
+  margin: 10px 0 5px 0;
+}
+
+.registration input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ff0055;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.registration button {
+  background-color: #ff0055;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.registration button:hover {
+  transform: scale(1.1);
+}
+
+/* Футер */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  margin-top: 30px;
+}
+
+footer p {
+  color: #ffcb05;
+}
+/* Стили для контейнера входа */
+.login-container {
+  max-width: 600px;
+  margin: 120px auto;
+  background: rgba(0,0,0,0.8);
+  padding: 30px;
+  border-radius: 10px;
+  border: 2px solid #ffcb05;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  color: #fff;
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container label {
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.login-container input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.login-container button {
+  background: #ff0055;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-container button:hover {
+  background: #ff3366;
+}
+
+.login-container a {
+  color: #ffcb05;
+  text-decoration: none;
+}
+.wrapper a{
+  font-size: 1.4rem;
+}

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Урок 2: Стилизация текста и блоков – Аниме-Академия</title>
+  <!-- Подключаем шрифт Bangers для заголовков -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <!-- Animate.css для анимации (опционально) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    /* Базовые сбросы */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    /* Фон: плавный градиент */
+    body {
+      font-family: 'Bangers', cursive;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: row; /* Левая колонка (контейнер урока) и правая (картинка) */
+      overflow-x: hidden;
+    }
+    
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Левая колонка с уроком */
+    .lesson-container {
+      flex: 1;
+      max-width: 800px;
+      margin: 20px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+    }
+    
+    /* Заголовок */
+    .lesson-container h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 3px 3px 0 #ff0055;
+    }
+    
+    /* Описание урока */
+    .lesson-desc {
+      font-size: 1.6rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    /* Вкладки */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      gap: 20px;
+      background: rgba(255,255,255,0.1);
+      padding: 10px 0;
+    }
+    .tabs a {
+      color: #ffcb05;
+      text-decoration: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .tabs a:hover {
+      color: #ff0055;
+    }
+    
+    /* Контент вкладок */
+    .content-section {
+      display: none;
+      animation: fadeIn 0.7s ease;
+    }
+    .content-section.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    
+    .content-section h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #ffcb05;
+      text-shadow: 2px 2px 0 #ff0055;
+      text-align: center;
+    }
+    .content-section p {
+      font-size: 1.4rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    
+    /* Стили для таблицы */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      color: #000;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #003e5b;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background: #013c58;
+      color: #fff;
+    }
+    
+    /* Кнопка "Отправить" */
+    button {
+      display: block;
+      margin: 20px auto 0 auto;
+      padding: 10px 25px;
+      background: #ff0055;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background: #ff3366;
+      transform: scale(1.05);
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    
+    /* Правая колонка с изображением */
+    .lesson-image {
+      flex: 1;
+      margin: 20px;
+      background: url('https://i.ytimg.com/vi/Acn-p_KHiA8/maxresdefault.jpg') no-repeat center center;
+      background-size: cover;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+    }
+    
+    /* Адаптив: при узких экранах колонки располагаются вертикально */
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+      .lesson-image {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Левая колонка: контейнер с уроком и вкладками -->
+  <div class="lesson-container animate__animated animate__fadeInUp">
+    <h1>Урок 2: Стилизация текста и блоков</h1>
+    <p class="lesson-desc">
+      В этом уроке мы углубимся в работу с текстом и блоковыми элементами, научимся менять шрифты, управлять отступами и рамками, а также придавать элементам неповторимый стиль!
+    </p>
+    
+    <!-- Вкладки -->
+    <nav class="tabs">
+      <a id="doc-tab">Документ</a>
+      <a id="video-tab">Видео</a>
+      <a id="tasks-tab">Задания</a>
+    </nav>
+    
+    <!-- Секция: Документ -->
+    <div id="document-section" class="content-section active">
+      <h2>Теория</h2>
+      <p>
+        Стилизация текста — это не только выбор цвета и размера шрифта. Мы можем управлять высотой строки (line-height), межбуквенным интервалом (letter-spacing), делать текст жирным или курсивным, и даже применять тени.
+      </p>
+      <p>
+        Блоковые элементы (div, section, article и др.) формируют «каркас» страницы. С помощью margin, padding и border выстраиваются отступы, создаются рамки и оформляется внутреннее пространство. В этом уроке мы рассмотрим базовые свойства, которые позволят превратить обычный текст и блоки в красивую, аккуратную верстку.
+      </p>
+    </div>
+    
+    <!-- Секция: Видео -->
+    <div id="video-section" class="content-section">
+      <h2>Видео урок</h2>
+      <p>
+        Посмотри видео, чтобы увидеть, как работает CSS и как применяются стили к элементам на странице.
+      </p>
+      <div style="text-align:center;">
+        <iframe width="640" height="360" src="https://drive.google.com/file/d/1Vb2o7gl9RsWdmkefDCB_Sf4RzWvSbf-K/preview" 
+        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+      </div>
+    </div>
+    
+    <!-- Секция: Задания -->
+    <div id="tasks-section" class="content-section">
+      <h1>Тест по CSS</h1>
+      <form id="quizForm">
+          <table>
+              <tr>
+                  <th>Вопрос</th>
+                  <th>Ваш ответ</th>
+              </tr>
+              <tr>
+                  <td>Как подключить внешний CSS-файл к HTML?</td>
+                  <td><input type="text" name="q1"></td>
+              </tr>
+              <tr>
+                  <td>Как написать внутренний CSS?</td>
+                  <td><input type="text" name="q2"></td>
+              </tr>
+              <tr>
+                  <td>Как задать стиль конкретному элементу напрямую в HTML?</td>
+                  <td><input type="text" name="q3"></td>
+              </tr>
+          </table>
+          <br>
+          <button type="button" onclick="checkAnswers()">Отправить</button>
+      </form>
+      <h2 id="result"></h2>
+    </div>
+  </div>
+  
+  <!-- Правая колонка: изображение урока -->
+  <div class="lesson-image"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Функция для показа секций
+    function showSection(sectionId) {
+        document.querySelectorAll(".content-section").forEach(section => {
+            section.classList.remove("active");
+        });
+        document.getElementById(sectionId).classList.add("active");
+    }
+
+    // Обработчики для вкладок
+    document.getElementById("doc-tab").addEventListener("click", function () {
+        showSection("document-section");
+    });
+    document.getElementById("video-tab").addEventListener("click", function () {
+        showSection("video-section");
+    });
+    document.getElementById("tasks-tab").addEventListener("click", function () {
+        showSection("tasks-section");
+    });
+
+    // По умолчанию показываем секцию "Документ"
+    showSection("document-section");
+
+    // Функция для отслеживания видео
+    function markVideoWatched(video) {
+        let videoKey = "video" + video.dataset.videoId + "_watched";
+        if (!localStorage.getItem(videoKey)) {
+            localStorage.setItem(videoKey, "true");
+            console.log("Видео " + video.dataset.videoId + " просмотрено и сохранено в localStorage.");
+        }
+    }
+
+    // Обработчик для всех видео
+    let videoElements = document.querySelectorAll("video");
+    videoElements.forEach(function (video) {
+        video.addEventListener("play", function () {
+            markVideoWatched(video);
+        });
+    });
+
+    // Проверка ответов на тест
+    document.querySelector("button").addEventListener("click", function () {
+        let answers = {
+            q1: '<link rel="stylesheet" href="styles.css">',
+            q2: 'Вставить стили в <style> внутри <head>',
+            q3: 'style'
+        };
+
+        let form = document.getElementById("quizForm");
+        let resultText = "";
+        let score = 0;
+
+        // Проверка ответов
+        for (let key in answers) {
+            let userAnswer = form.elements[key].value.trim();
+            if (userAnswer === answers[key]) {
+                score += 10;
+                resultText += `✅ Ответ на вопрос "${key}" — верный! (+10 баллов)<br>`;
+            } else {
+                resultText += `❌ Ответ на вопрос "${key}" — неверный. Правильный ответ: ${answers[key]}<br>`;
+            }
+        }
+        resultText += `<br><strong>Итоговый балл: ${score}</strong>`;
+        document.getElementById("result").innerHTML = resultText;
+
+        // Сохраняем результат для урока 2 в localStorage
+        localStorage.setItem("lesson2Score", score);
+    });
+});
+
+
+</script>
+</body>
+</html>

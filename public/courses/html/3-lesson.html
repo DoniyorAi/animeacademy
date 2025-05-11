@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тестирование</title>
+  <style>
+    /* ---------- Общие стили для страницы ---------- */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #1a1a1a no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-size: 20px;
+      line-height: 1.6;
+      word-spacing: 4px;
+      color: #fff;
+    }
+    /* ---------- Контейнер урока ---------- */
+    .lesson-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: 10px;
+    }
+    h1 {
+      font-family: 'Bangers', cursive;
+      font-size: 2.5rem;
+      text-align: center;
+      text-shadow: 2px 2px 0 #ff0055;
+      margin-top: 0;
+    }
+    /* ---------- Вкладки (Документ / Видео / Задания) ---------- */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    .tabs a {
+      color: #ffcb05;
+      text-decoration: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .tabs a:hover {
+      color: #ff0055;
+    }
+    .content-section {
+      display: none;
+    }
+    .content-section.active {
+      display: block;
+    }
+    /* ---------- Стили таблицы ---------- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: #2a2a2a;
+      color: #fff;
+      font-size: 18px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    thead {
+      background: #ffc800;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #444;
+    }
+    th {
+      text-align: left;
+      text-transform: uppercase;
+    }
+    tbody tr:nth-child(even) td {
+      background-color: #3a3a3a;
+    }
+    tbody tr:hover td {
+      background-color: #444;
+    }
+    /* ---------- Поля ввода ---------- */
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #888;
+      border-radius: 4px;
+      font-size: 16px;
+      background: #f9f9f9;
+      color: #333;
+    }
+    /* ---------- Кнопка ---------- */
+    button[type="button"] {
+      background: #ffb700;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button[type="button"]:hover {
+      background: #ff3366;
+    }
+    /* ---------- Сообщения ---------- */
+    .correct { color: #4CAF50; }
+    .incorrect { color: #ff3333; }
+  </style>
+</head>
+<body>
+  <div class="lesson-container">
+    <h1>Урок 3: Списки, таблицы и формы</h1>
+    <p>В этом уроке вы узнаете, как создавать списки, таблицы и формы в HTML. Эти элементы помогают структурировать информацию, представлять данные в виде таблиц и собирать ввод от пользователей.</p>
+
+    <nav class="tabs">
+      <a id="doc-tab">Документ</a>
+      <a id="video-tab">Видео</a>
+      <a id="tasks-tab">Задания</a>
+    </nav>
+
+    <!-- ---------- Раздел: Документ ---------- -->
+    <div id="document-section" class="content-section active">
+      <h2>Теория</h2>
+      <p>
+        Научитесь создавать упорядоченные и неупорядоченные списки, оформлять таблицы с помощью тегов &lt;table&gt;, &lt;tr&gt;, &lt;td&gt; и &lt;th&gt;, 
+        а также создавать формы для ввода данных. Правильное использование этих элементов поможет вам структурировать контент на веб-страницах.
+      </p>
+    </div>
+
+    <!-- ---------- Раздел: Видео ---------- -->
+    <div id="video-section" class="content-section">
+      <h2>Видео урок</h2>
+      <p>Посмотри видео о таблицах в HTML.</p>
+      <!-- Используем событие onplay вместо onclick -->
+      <div style="text-align:center;">
+      <iframe width="640" height="360" src="https://drive.google.com/file/d/1lzOBLc9kEH86BOYEGRbftdXrfRUSXsPX/preview" 
+      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen></iframe>
+      
+      <iframe width="640" height="360" src="https://drive.google.com/file/d/16IRji85009GR1NOqhMH5nIL5_X4xZe08/preview" 
+      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen></iframe>
+      </div>
+      <!-- Блок для отображения общего количества просмотренных видео -->
+      <p id="videosCount">Просмотрено видео: 0</p>
+    </div>
+
+    <!-- ---------- Раздел: Задания ---------- -->
+    <div id="tasks-section" class="content-section">
+      <h1>Тест по таблицам в HTML</h1>
+      <form id="quizForm">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 60%;">Вопрос</th>
+              <th style="width: 40%;">Ваш ответ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Как создать маркированный список? (распишите свой ответ)</td>
+              <td><input type="text" name="q1"></td>
+            </tr>
+            <tr>
+              <td>Какой тег используется для создания таблицы?</td>
+              <td><input type="text" name="q2"></td>
+            </tr>
+            <tr>
+              <td>Как объединить ячейки в таблице для длинного урока?</td>
+              <td><input type="text" name="q3"></td>
+            </tr>
+            <tr>
+              <td>Как сделать кнопку отправки формы?</td>
+              <td><input type="text" name="q4"></td>
+            </tr>
+            <tr>
+              <td>Как сделать поле для ввода имени?</td>
+              <td><input type="text" name="q5"></td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" onclick="checkAnswers()">Отправить</button>
+      </form>
+      <h2 id="result"></h2>
+    </div>
+  </div>
+
+  <script>
+    // Функция для отметки просмотра видео и увеличения счетчика просмотренных видео
+    function markVideoWatched(videoElement) {
+      let videoId = videoElement.getAttribute('data-video-id');
+      let key = "video" + videoId + "_watched";
+      if (!localStorage.getItem(key)) {
+        // Отмечаем, что видео просмотрено
+        localStorage.setItem(key, "true");
+
+        // Получаем текущий счетчик, увеличиваем и сохраняем его
+        let count = localStorage.getItem("videosWatchedCount") || 0;
+        count = parseInt(count) + 1;
+        localStorage.setItem("videosWatchedCount", count);
+
+        // Обновляем отображение счетчика на странице
+        document.getElementById("videosCount").innerText = "Просмотрено видео: " + count;
+      }
+    }
+
+    function checkAnswers() {
+      const form = document.getElementById("quizForm");
+      const formData = new FormData(form);
+  
+      const answers = {
+        q1: "<ul>",
+        q2: "<table>",
+        q3: "colspan (объединение по ширине) или rowspan (по высоте).",
+        q4: "<input type='submit'>",
+        q5: "<input type='text'> ; name='name'."
+      };
+  
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "";
+      let score = 0;
+  
+      for (let [key, value] of formData.entries()) {
+        const userAnswer = value.trim().toLowerCase();
+        const correctAnswer = answers[key].toLowerCase();
+  
+        if (userAnswer === correctAnswer) {
+          resultDiv.innerHTML += `<p class='correct'>✅ Ответ на вопрос "${key}" — верный! (+10 баллов)</p>`;
+          score += 10;
+        } else {
+          resultDiv.innerHTML += `<p class='incorrect'>❌ Ответ на вопрос "${key}" — неверный. Правильный ответ: <strong>${answers[key]}</strong></p>`;
+        }
+      }
+      resultDiv.innerHTML += `<p><strong>Итоговый балл: ${score}</strong></p>`;
+  
+      localStorage.setItem("lesson3Score", score);
+    }
+  
+    document.addEventListener("DOMContentLoaded", function() {
+      function showSection(sectionId) {
+        document.querySelectorAll(".content-section").forEach(section => {
+          section.style.display = "none";
+        });
+        document.getElementById(sectionId).style.display = "block";
+      }
+  
+      document.getElementById("doc-tab").addEventListener("click", () => showSection("document-section"));
+      document.getElementById("video-tab").addEventListener("click", () => showSection("video-section"));
+      document.getElementById("tasks-tab").addEventListener("click", () => showSection("tasks-section"));
+  
+      showSection("document-section");
+
+      // Инициализируем отображение счетчика просмотренных видео при загрузке страницы
+      let savedCount = localStorage.getItem("videosWatchedCount") || 0;
+      document.getElementById("videosCount").innerText = "Просмотрено видео: " + savedCount;
+    });
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Список заданий</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #007BFF;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Список заданий</h1>
+    <% if (assignments && assignments.length > 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Вопрос</th>
+            <th>Правильный ответ</th>
+            <th>Макс. баллов</th>
+            <th>Заголовок</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% assignments.forEach(assignment => { %>
+            <tr>
+              <td><%= assignment.question %></td>
+              <td><%= assignment.correctAnswer %></td>
+              <td><%= assignment.maxPoints %></td>
+              <td><%= assignment.title %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>Нет заданий для отображения.</p>
+    <% } %>
+    <p><a href="/admin/assignments/new">Добавить новое задание</a></p>
+  </div>
+</body>
+</html>

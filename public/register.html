@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация в Аниме-Академию</title>
+  <!-- Шрифт (пример с Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    /* Ваши стили */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Press Start 2P', cursive; color: #fff; background:url('https://avatars.mds.yandex.net/get-mpic/5279470/img_id1052585334648845073.jpeg/orig'); background-repeat: no-repeat; background-size: cover; }
+    .registration-header { position: relative; width: 100%; min-height: 450px; display: flex; align-items: center; justify-content: center; background: url('header-bg.jpg') no-repeat center center / cover; }
+    .registration-header::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); }
+    .header-content { position: relative; text-align: center; z-index: 1; padding: 30px; }
+    .header-content h1 { font-size: 2rem; margin-bottom: 20px; text-shadow: 2px 2px 0 #ff0055; }
+    .header-content p { font-size: 2rem; color: #ffffff; text-shadow: 1px 1px 0 #000; }
+    .registration-container { max-width: 800px; margin: 40px auto; background: rgba(218, 146, 146, 0.2); border: 2px solid #672323; border-radius: 10px; padding: 30px 50px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+    .registration-container form { display: flex; flex-direction: column; }
+    .registration-container label { margin-bottom: 5px; font-size: 1.5rem; }
+    .registration-container input { padding: 10px; margin-bottom: 15px; border: none; border-radius: 5px; font-size: 1.5rem; }
+    .registration-container button { background: rgba(211, 63, 78, 0.2); color: #cdd7e8; font-size: 2rem; font-weight: 600; padding: 18px; border: none; border-radius: 5px; cursor: pointer; transition: background 0.3s ease; }
+    .registration-container button:hover { background: #b91717; }
+  </style>
+</head>
+<body>
+  <header class="registration-header">
+    <div class="header-content">
+      <h1>Регистрация в Аниме-Академию</h1>
+      <p>Сделай первый шаг в мир веб-разработки и аниме!</p>
+    </div>
+  </header>
+  <div class="registration-container">
+    <form action="/register" method="POST">
+      <div>
+        <label>Имя пользователя:</label>
+        <input type="text" name="username" required>
+      </div>
+      <div>
+        <label>Email:</label>
+        <input type="email" name="email" required>
+      </div>
+      <div>
+        <label>Пароль:</label>
+        <input type="password" name="password" required>
+      </div>
+      <button type="submit">Зарегистрироваться</button>
+    </form>
+  </div>
+  <!-- Если нужна клиентская логика, можно добавить её здесь, но серверный код Node.js не нужен -->
+   <script>
+    /*document.getElementById("registerForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = {
+        username: document.getElementById("username").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+    };
+
+    const response = await fetch('/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+        alert("Регистрация успешна!");
+    } else {
+        alert("Ошибка: " + data.message);
+    }
+});*/
+
+   </script>
+</body>
+</html>

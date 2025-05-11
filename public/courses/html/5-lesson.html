@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Урок 5: Семантическая разметка и доступность</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      background: #1a1a1a url('https://i?id=5b860fd5bc29f0eee5c97a36d8a083ad_l-5303693-images-thumbs&ref=rim&n=13&w=1280&h=720') no-repeat center center fixed;
+      background-size: cover; 
+      color: white;
+    }
+    .lesson-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: 10px;
+    }
+    h1 {
+      font-family: 'Bangers', cursive;
+      font-size: 2.5rem;
+      text-align: center;
+      text-shadow: 2px 2px 0 #ff0055;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: rgba(255,255,255,0.1);
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    .tabs a {
+      color: #ffcb05;
+      text-decoration: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .tabs a:hover {
+      color: #ff0055;
+    }
+    .content-section {
+      display: none;
+    }
+    .content-section.active {
+      display: block;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      color: #000;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+    }
+    th {
+      background: #f4a42d;
+      color: #fff;
+    }
+    .correct {
+      color: #4CAF50;
+    }
+    .incorrect {
+      color: #ff3333;
+    }
+    /* Оставляем только один блок для body настроек */
+    body {
+      font-size: 20px;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      line-height: 1.6;
+      word-spacing: 4px;
+    }
+  </style>
+</head>
+<body>
+<div class="lesson-container">
+  <h1>Урок 5: Семантическая разметка и доступность</h1>
+  <p>В этом уроке вы узнаете, что такое семантическая разметка и почему она так важна. Семантические теги HTML5, такие как &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;article&gt;, &lt;section&gt;, &lt;aside&gt; и &lt;footer&gt;, помогают не только организовать контент, но и улучшают доступность и SEO вашей страницы. Погрузитесь в мир смысловой разметки!</p>
+  
+  <nav class="tabs">
+    <a id="doc-tab">Документ</a>
+    <a id="video-tab">Видео</a>
+    <a id="tasks-tab">Задания</a>
+  </nav>
+  
+  <div id="document-section" class="content-section active">
+    <h2>Теория</h2>
+    <p>
+      Семантическая разметка использует теги, которые описывают смысловое содержание. Например, &lt;header&gt; определяет заголовок страницы, &lt;nav&gt; – навигационное меню, &lt;main&gt; – основной контент, &lt;article&gt; – отдельную статью, &lt;section&gt; – раздел, &lt;aside&gt; – дополнительную информацию, а &lt;footer&gt; – нижний колонтитул. Эти теги помогают поисковикам и вспомогательным технологиям лучше понимать структуру страницы.
+    </p>
+  </div>
+  
+  <div id="video-section" class="content-section">
+    <h2>Видео урок</h2>
+    <p>Посмотрите видео о семантической разметке в HTML.</p>
+    <!-- Добавляем data-video-id для идентификации видео -->
+    <div style="text-align:center;">
+    <iframe width="640" height="360" src="https://drive.google.com/file/d/1GTW5AFrJ_KtRDNq7Tins4FQ7xlwFms6W/preview" 
+    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen></iframe>
+    </div>
+  </div>
+  
+  <div id="tasks-section" class="content-section">
+    <h1>Тест по семантической разметке</h1>
+    <form id="quizForm">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:60%;">Вопрос</th>
+            <th style="width:40%;">Ваш ответ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Какой тег используется для основного содержимого страницы?</td>
+            <td><input type="text" name="q1"></td>
+          </tr>
+          <tr>
+            <td>Как выделить навигационное меню?</td>
+            <td><input type="text" name="q2"></td>
+          </tr>
+          <tr>
+            <td>Как разметить статью или блог-пост?</td>
+            <td><input type="text" name="q3"></td>
+          </tr>
+          <tr>
+            <td>Как выделить подвал страницы?</td>
+            <td><input type="text" name="q4"></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <button type="button" onclick="checkAnswers()">Отправить</button>
+    </form>
+    <h2 id="result"></h2>
+  </div>
+  
+  <div id="watchedVideosCount">
+    <h3>Количество просмотренных видео: <span id="videoCount">0</span></h3>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  function showSection(sectionId) {
+    document.querySelectorAll(".content-section").forEach(section => {
+      section.style.display = "none";
+    });
+    document.getElementById(sectionId).style.display = "block";
+  }
+
+  document.getElementById("doc-tab").addEventListener("click", function () {
+    showSection("document-section");
+  });
+
+  document.getElementById("video-tab").addEventListener("click", function () {
+    showSection("video-section");
+  });
+
+  document.getElementById("tasks-tab").addEventListener("click", function () {
+    showSection("tasks-section");
+  });
+
+  // Показываем секцию "Документ" по умолчанию
+  showSection("document-section");
+
+  // Считываем количество просмотренных видео из localStorage и обновляем элемент videoCount
+  let watchedVideosCount = localStorage.getItem("watchedVideosCount") || "0";
+  document.getElementById("videoCount").textContent = watchedVideosCount;
+});
+
+// Функция для отметки просмотра видео
+function markVideoWatched(videoElement) {
+  let videoId = videoElement.getAttribute('data-video-id');
+  if (!localStorage.getItem("video" + videoId + "_watched")) {
+    localStorage.setItem("video" + videoId + "_watched", "true");
+    let watchedVideosCount = parseInt(localStorage.getItem("watchedVideosCount") || "0");
+    watchedVideosCount += 1;
+    localStorage.setItem("watchedVideosCount", watchedVideosCount);
+    document.getElementById("videoCount").textContent = watchedVideosCount;
+  }
+}
+
+// Функция для проверки ответов
+function checkAnswers() {
+  var correctAnswers = {
+    q1: "main",
+    q2: "nav",
+    q3: "article",
+    q4: "footer"
+  };
+
+  var result = document.getElementById("result");
+  var form = document.getElementById("quizForm");
+  var score = 0;
+
+  // Проверка каждого вопроса
+  for (var key in correctAnswers) {
+    var userAnswer = form[key].value.trim().toLowerCase();
+    if (userAnswer === correctAnswers[key]) {
+      score++;
+      form[key].parentElement.classList.add("correct");
+    } else {
+      form[key].parentElement.classList.add("incorrect");
+    }
+  }
+  result.innerHTML = `<strong>Итоговый балл: ${score}</strong>`;
+}
+</script>
+</body>
+</html>

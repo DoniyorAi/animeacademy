@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Выбери свой курс - Юный Знаток!</title>
+  <!-- Подключаем шрифт Bangers и Animate.css -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- Подключаем tsParticles через CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+  <style>
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Bangers', cursive;
+      background: linear-gradient(135deg, #222, #1e1d1d);
+      color: #fff;
+      display: flex;
+      min-height: 100vh;
+      /* Убираем лишний overflow-x */
+      overflow-x: hidden;
+    }
+    /* Боковая панель */
+    .sidebar {
+      width: 300px;
+      background: rgba(0,0,0,0.9);
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+      box-shadow: 4px 0 10px rgba(0,0,0,0.7);
+      z-index: 2; /* чтобы панель была поверх анимации */
+    }
+    .sidebar h2 {
+      font-size: 2.9rem;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ffcb05;
+      text-shadow: 2px 2px 0 #ff0055;
+    }
+    .nav-item {
+      margin-bottom: 30px;
+      padding: 18px 24px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid #ffcb05;
+      border-radius: 10px;
+      transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .nav-item:hover {
+      transform: scale(1.05);
+      background: rgba(255,203,5,0.3);
+      box-shadow: inset 0 0 10px 2px #ffcb05;
+    }
+    .nav-item a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 2.2rem;
+      display: block;
+    }
+    /* Основной контент */
+    .main-content {
+      margin-left: 270px;
+      padding: 40px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: slideIn 1s ease-out;
+      z-index: 2; /* чтобы контент был поверх анимации */
+    }
+    .main-content h1 {
+      font-size: 3.3rem;
+      margin-bottom: 20px;
+      text-shadow: 3px 3px 0 #ff0055;
+    }
+    .main-content p {
+      font-size: 2.5rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(100px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Контейнер для анимации tsParticles */
+    #tsparticles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* чтобы частицы были за контентом */
+    }
+  </style>
+</head>
+<body>
+  <!-- Контейнер для tsParticles -->
+  <div id="tsparticles"></div>
+
+  <!-- Боковая панель -->
+  <div class="sidebar animate__animated animate__fadeInLeft">
+    <h2>Курсы для Юных Знатоков!</h2>
+    <div class="nav-item animate__animated animate__bounceIn" style="animation-delay: 0.2s;">
+      <a href="html.html">Прокачай HTML!</a>
+    </div>
+    <div class="nav-item animate__animated animate__bounceIn" style="animation-delay: 0.4s;">
+      <a href="css.html">Волшебство CSS!</a>
+    </div>
+    <div class="nav-item animate__animated animate__bounceIn" style="animation-delay: 0.6s;">
+      <a href="javascript.html">Завоюй JavaScript!</a>
+    </div>
+  </div>
+  
+  <!-- Основной контент -->
+  <div class="main-content animate__animated animate__fadeInRight">
+    <h1>Привет, юный исследователь!</h1>
+    <p>
+      Выбери один из курсов в левой панели, чтобы начать своё удивительное путешествие в мир веб-разработки!
+      Каждый курс наполнен яркими уроками, веселыми заданиями и даже анимированными героями!
+    </p>
+  </div>
+
+  <script>
+    // Инициализация tsParticles
+    document.addEventListener("DOMContentLoaded", function() {
+      tsParticles.load("tsparticles", {
+        fpsLimit: 60,
+        background: {
+          color: "#000" // или уберите, если хотите использовать градиент из body
+        },
+        interactivity: {
+          events: {
+            onHover: { enable: true, mode: "repulse" },
+            resize: true
+          },
+          modes: {
+            repulse: { distance: 100, duration: 0.4 }
+          }
+        },
+        particles: {
+          color: { value: "#ffcb05" }, // Цвет точек
+          links: {
+            color: "#ffcb05", // Цвет линий
+            distance: 150,    // Расстояние, на котором точки соединяются
+            enable: true,
+            opacity: 0.5,
+            width: 1
+          },
+          move: {
+            direction: "none",
+            enable: true,
+            outModes: { default: "bounce" },
+            random: false,
+            speed: 1.5,
+            straight: false
+          },
+          number: {
+            value: 60, // сколько точек
+            density: { enable: true, area: 800 }
+          },
+          opacity: { value: 0.5 },
+          shape: { type: "circle" },
+          size: { value: { min: 1, max: 3 } }
+        },
+        detectRetina: true
+      });
+    });
+  </script>
+</body>
+</html>
+  

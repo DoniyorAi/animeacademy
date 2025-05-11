@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Профиль пользователя - WOW</title>
+  <!-- Подключаем шрифты и Animate.css -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Например, шрифт Bangers для заголовков -->
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- Основные стили (можно вынести в styles.css) -->
+  <style>
+    /* Сброс и базовые настройки */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: sans-serif;
+      overflow: hidden;
+      position: relative;
+      background: #111;
+      color: #fff;
+    }
+    /* Контейнер для фоновых частиц */
+    #tsparticles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+    /* Оверлей для затемнения фона */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: -1;
+    }
+    /* Шапка */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0,0,0,0.7);
+      position: relative;
+      z-index: 1;
+    }
+    header nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    header nav a {
+      text-decoration: none;
+      color: #ffcb05;
+      font-size: 1.6rem;
+      transition: color 0.3s;
+    }
+    header nav a:hover {
+      color: #ff0055;
+    }
+    .profile-title {
+      font-family: 'Bangers', cursive;
+      font-size: 2.4rem;
+      text-shadow: 2px 2px 0 #ff0055;
+    }
+    /* Основной контейнер профиля */
+    .profile-container {
+      max-width: 1000px;
+      margin: 100px auto 0 auto;
+      padding: 40px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 3px solid #ffcb05;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 1s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Изображение профиля (персонаж) */
+    .profile-image img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid #ff0055;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    /* Статистика */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid #ff0055;
+      border-radius: 10px;
+      padding: 20px;
+      width: 200px;
+      transition: transform 0.3s ease;
+    }
+    .stat-card:hover {
+      transform: scale(1.05);
+    }
+    .stat-title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #ffcb05;
+      text-shadow: 1px 1px 0 #000;
+    }
+    .stat-number {
+      font-size: 2rem;
+      color: #fff;
+      text-shadow: 1px 1px 0 #ff0055;
+    }
+    /* Кнопка действий */
+    .action-button {
+      background: #ff0055;
+      color: #fff;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+    .action-button:hover {
+      background: #ff3366;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- Фон с частицами -->
+  <div id="tsparticles"></div>
+
+  <!-- Шапка сайта -->
+  <header>
+    <div class="profile-title">Аниме-Академия</div>
+    <nav>
+      <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/courses/courses.html">Курсы</a></li>
+        <li><a href="/profile">Профиль</a></li>
+        <li><a href="/logout">Выйти</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Контейнер профиля -->
+  <div class="profile-container animate__animated animate__fadeInUp">
+
+    <h1 id="username" style="margin: 20px 0; font-size: 2.2rem;">AnimeFan</h1>
+    <!-- Блок статистики -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-title">Видео просмотрено</div>
+        <div class="stat-number" id="watchedVideos">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Набранные баллы</div>
+        <div class="stat-number" id="solvedTasks">0</div>
+      </div>
+    </div>
+    <!-- Кнопка для перехода -->
+    <div>
+      <button class="action-button" onclick="goToCourses()">Перейти к курсам</button>
+    </div>
+  </div>
+
+  <!-- Подключаем tsParticles и настраиваем фон -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <!-- Подключаем anime.js для анимации (если понадобится для сложных эффектов) -->
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Подсчет баллов уроков
+      let totalScore = 0;
+      for (let i = 1; i <= 20; i++) {
+        let lessonScore = parseInt(localStorage.getItem("lesson" + i + "Score")) || 0;
+        totalScore += lessonScore;
+      }
+      document.getElementById("solvedTasks").textContent = totalScore;
+  
+      // Подсчет просмотренных видео
+      let uniqueVideosWatched = 0;
+      for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i);
+        if (key.startsWith("video") && key.endsWith("_watched") && localStorage.getItem(key) === "true") {
+          uniqueVideosWatched++;
+        }
+      }
+      document.getElementById("watchedVideos").textContent = uniqueVideosWatched;
+    });
+  
+    tsParticles.load("tsparticles", {
+      fpsLimit: 60,
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "repulse" },
+          resize: true
+        },
+        modes: { repulse: { distance: 100, duration: 0.4 } }
+      },
+      particles: {
+        color: { value: "#ffcb05" },
+        links: {
+          color: "#ffcb05",
+          distance: 150,
+          enable: true,
+          opacity: 0.5,
+          width: 1
+        },
+        collisions: { enable: false },
+        move: {
+          direction: "none",
+          enable: true,
+          outModes: { default: "bounce" },
+          random: false,
+          speed: 1,
+          straight: false
+        },
+        number: { density: { enable: true, area: 800 }, value: 80 },
+        opacity: { value: 0.5 },
+        shape: { type: "circle" },
+        size: { value: { min: 1, max: 3 } }
+      },
+      detectRetina: true
+    });
+  
+    function goToCourses() {
+      window.location.href = '/courses/courses.html';
+    }
+  </script>  
+</body>
+</html>

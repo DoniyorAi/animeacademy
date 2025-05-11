@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Погружение в CSS – Аниме-Академия</title>
+  <!-- Подключаем шрифт Bangers -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <style>
+    /* Сброс базовых отступов */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Bangers', cursive;
+      background: url('https://i.pinimg.com/originals/2f/82/27/2f8227d1637684e9ca3b2d6cf4508105.jpg');
+      background-size: 200% 200%;
+      animation: gradientBG 60s ease infinite;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .profile-title {
+      font-family: 'Bangers', cursive;
+      font-size: 2.3rem;
+      text-shadow: 2px 2px 0 #ff0055;
+    }
+    /* Основной контейнер профиля */
+    .profile-container {
+      max-width: 800px;
+      margin: 80px auto 0 auto;
+      padding: 40px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 3px solid #ffcb05;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 1s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Изображение профиля (персонаж) */
+    .profile-image img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid #ff0055;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0,0,0,0.7);
+      position: relative;
+      z-index: 1;
+    }
+    header nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    header nav a {
+      text-decoration: none;
+      color: #ffcb05;
+      font-size: 1.6em;
+      transition: color 0.3s;
+    }
+    header nav a:hover {
+      color: #ff0055;
+    }
+
+    /* Контейнер для всего контента */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 0px;
+      text-align: center;
+     
+    }
+
+    /* Заголовок и вступительный текст */
+    h1 {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      text-shadow: 3px 3px 0 #000;
+    }
+    .intro-text {
+      font-size: 2.1rem;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto 50px auto;
+    }
+
+    /* Сетка карточек */
+    .lessons-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 30px;
+  overflow-x: auto; /* Прокрутка по горизонтали */
+  justify-content: flex-start;
+  background-color: rgba(0,0,0,0.2);;
+}
+
+.lesson-card {
+  width: 280px; /* фиксированная ширина */
+  flex: 0 0 auto;
+}
+
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.5);
+    }
+
+    .lesson-card h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #ffe74c; /* яркий желтый */
+      text-shadow: 2px 2px 0 #000;
+    }
+    .lesson-card p {
+      font-size: 1.9rem;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    /* Кнопка "Начать урок" */
+    .lesson-card a {
+      display: inline-block;
+      background: #ff0055;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.4rem;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .lesson-card a:hover {
+      background: #ff3366;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="profile-title">Аниме-Академия</div>
+    <nav>
+      <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/courses/courses.html">Курсы</a></li>
+        <li><a href="/profile.html">Профиль</a></li>
+        <li><a href="/courses/courses.html">Выйти</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="container">
+    <h1>Погружение в CSS</h1>
+    <p class="intro-text">
+      Добро пожаловать в мир CSS — твой пропуск в яркие дизайны и потрясающие визуальные эффекты!  
+      Здесь ты научишься использовать селекторы, свойства и анимации, чтобы твои сайты выглядели так,  
+      как будто сошли с экранов фантастических фильмов. Готов к приключению? Тогда вперёд!
+    </p>
+    
+    <div class="lessons-grid">
+      <!-- Урок 1 -->
+      <div class="lesson-card">
+        <h2>Урок 1</h2>
+        <p>Основы CSS: селекторы, свойства и значения. Твой первый шаг к красоте веба.</p>
+        <a href="css/1-lessoncss.html">Начать урок</a>
+      </div>
+      <!-- Урок 2 -->
+      <div class="lesson-card">
+        <h2>Урок 2</h2>
+        <p>Стилизация текста и блоков: шрифты, отступы, фоны. Сделаем страницу уютной!</p>
+        <a href="css/2-lessoncss.html">Начать урок</a>
+      </div>
+      <!-- Урок 3 -->
+      <div class="lesson-card">
+        <h2>Урок 3</h2>
+        <p>Цвета и градиенты: раскрась свой сайт в удивительные оттенки и плавные переходы.</p>
+        <a href="css/3-lessoncss.html">Начать урок</a>
+      </div>
+      <!-- Урок 4 -->
+      <div class="lesson-card">
+        <h2>Урок 4</h2>
+        <p>Анимации и трансформации: оживляем элементы, заставляем их парить и кружиться.</p>
+        <a href="css/4-lessoncss.html">Начать урок</a>
+      </div>
+      <!-- Урок 5 -->
+      <div class="lesson-card">
+        <h2>Урок 5</h2>
+        <p>Flexbox и макеты: выравнивание, адаптивность и удобная верстка для любых экранов.</p>
+        <a href="css/5-lessoncss.html">Начать урок</a>
+      </div>
+      <!-- Урок 6 -->
+      <div class="lesson-card">
+        <h2>Урок 6</h2>
+        <p>CSS Grid: создаём сложные сетки и раскладки. Почувствуй себя настоящим дизайнером!</p>
+        <a href="css/6-lessoncss.html">Начать урок</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

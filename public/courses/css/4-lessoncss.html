@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Урок 4: Анимации и трансформации – Аниме-Академия</title>
+  <!-- Подключаем Google Fonts (Bangers) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <!-- Подключаем Animate.css для анимаций -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    /* Анимированный градиентный фон (синие оттенки) */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Bangers', cursive;
+      color: #fff;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      display: flex;
+      flex-direction: row;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Левая колонка: контент урока */
+    .lesson-container {
+      flex: 1;
+      max-width: 800px;
+      margin: 20px;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+    }
+    .lesson-container h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 3px 3px 0 #ff0055;
+    }
+    .lesson-desc {
+      font-size: 1.6rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    /* Навигационная панель */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .tabs button {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #ffcb05;
+      font-size: 1.6rem;
+      padding: 15px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    .tabs button:hover, .tabs button.active {
+      background: rgba(255,255,255,0.2);
+      color: #ff0055;
+    }
+    
+    /* Секции контента */
+    .content-section {
+      display: none;
+      animation: fadeIn 0.7s ease;
+    }
+    .content-section.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .content-section h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #ffcb05;
+      text-shadow: 2px 2px 0 #ff0055;
+      text-align: center;
+    }
+    .content-section p {
+      font-size: 1.4rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    
+    /* Кнопка "Отправить" */
+    #submit-quiz {
+      display: block;
+      margin: 20px auto 0 auto;
+      padding: 10px 25px;
+      background: #ff0055;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    #submit-quiz:hover {
+      background: #ff3366;
+      transform: scale(1.05);
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    
+    /* Стили для таблицы */
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 80%;
+      max-width: 600px;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    table th {
+      background-color: #0e263a;
+      color: #fff;
+      padding: 15px;
+      text-align: left;
+      font-size: 1.2rem;
+    }
+    table td {
+      background-color: #fff;
+      color: #000;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    table tr:last-child td {
+      border-bottom: none;
+    }
+    table input[type="text"] {
+      width: 100%;
+      padding: 6px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    /* Правая колонка: изображение урока */
+    .lesson-image {
+      flex: 1;
+      margin: 20px;
+      background: url('https://i.pinimg.com/736x/58/03/b7/5803b76ee52c976ce06e12e867a3be67.jpg') no-repeat center center;
+      background-size: cover;
+      height: 1400px;
+    }
+    
+    /* Адаптив: при узких экранах элементы идут друг под другом */
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+      .lesson-image {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Левая колонка: контейнер с уроком -->
+  <div class="lesson-container animate__animated animate__fadeInUp">
+    <h1>Урок 4: Анимации и трансформации</h1>
+    <p class="lesson-desc">
+      В этом уроке ты узнаешь, как применять CSS-анимации и трансформации для создания динамичных эффектов. Ты научишься использовать свойство <code>transition</code> для плавных переходов и <code>@keyframes</code> для создания сложных анимаций, а также узнаешь о трансформациях: масштабировании, вращении, перемещении и наклоне.
+    </p>
+    
+    <!-- Навигационная панель -->
+    <div class="tabs">
+      <button class="active" onclick="showSection('document')">Документ</button>
+      <button onclick="showSection('video')">Видео</button>
+      <button onclick="showSection('assignments')">Задания</button>
+    </div>
+    
+    <!-- Секция: Документ -->
+    <div id="document" class="content-section active">
+      <h2>Теория</h2>
+      <p>
+        CSS-анимации позволяют создавать динамичные эффекты, изменяя стили элементов за заданное время. Простые эффекты можно реализовать с помощью свойства <code>transition</code>, а более сложные — с помощью <code>@keyframes</code>. Трансформации, задаваемые через свойство <code>transform</code>, позволяют вращать, масштабировать, перемещать или наклонять элементы, что помогает создать эффект движения.
+      </p>
+      <p>
+        Вы узнаете, как применять эти свойства для оживления статичных страниц и создания эффектных интерактивных элементов.
+      </p>
+    </div>
+    
+    <!-- Секция: Видео -->
+    <div id="video" class="content-section">
+      <h2>Видео урок</h2>
+      <p>
+        Посмотри видео, чтобы увидеть, как создаются анимации и трансформации с использованием CSS, и как они применяются для создания динамичных интерфейсов.
+      </p>
+      <div style="text-align:center;">
+        <iframe width="640" height="360" src="https://drive.google.com/file/d/1-OhhHMcsu_z1pCytJTyPl_WVGAgrgAOf/preview" 
+        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+      </div>
+    </div>
+    
+    <!-- Секция: Задания -->
+    <div id="tasks-section" class="content-section">
+      <h1>Тест по анимациям и трансформациям</h1>
+      <form id="quizForm">
+          <table>
+              <tr>
+                  <th>Вопрос</th>
+                  <th>Ваш ответ</th>
+              </tr>
+              <tr>
+                  <td>Как повернуть элемент на 45 градусов?</td>
+                  <td><input type="text" name="q1"></td>
+              </tr>
+              <tr>
+                  <td>Как сжать элемент по горизонтали в 2 раза?</td>
+                  <td><input type="text" name="q2"></td>
+              </tr>
+              <tr>
+                  <td>Как добавить задержку перед началом анимации?</td>
+                  <td><input type="text" name="q3"></td>
+              </tr>
+              <tr>
+                  <td>Как повторять анимацию бесконечно?</td>
+                  <td><input type="text" name="q4"></td>
+              </tr>
+          </table>
+          <br>
+          <button id="submit-quiz" type="button" onclick="checkAnswers()">Отправить</button>
+      </form>
+      <h2 id="result"></h2>
+    </div>
+  </div>
+  
+  <!-- Правая колонка: изображение урока -->
+  <div class="lesson-image"></div>
+  
+<script>
+  function checkAnswers() {
+      // Правильные ответы для каждого вопроса
+      let answers = {
+          q1: "transform: rotate(45deg);",
+          q2: "transform: scaleX(0.5);",
+          q3: "animation-delay:",
+          q4: "animation-iteration-count: infinite;"
+      };
+      let form = document.getElementById("quizForm");
+      let resultText = "";
+      let score = 0;
+  
+      // Проверка ответов
+      for (let key in answers) {
+          let userAnswer = form.elements[key].value.trim();
+          if (userAnswer === answers[key]) {
+              score += 10;
+              resultText += `✅ Ответ на вопрос "${key}" — верный! (+10 баллов)<br>`;
+          } else {
+              resultText += `❌ Ответ на вопрос "${key}" — неверный. Правильный ответ: ${answers[key]}<br>`;
+          }
+      }
+      resultText += `<br><strong>Итоговый балл: ${score}</strong>`;
+      document.getElementById("result").innerHTML = resultText;
+      
+      // Сохраняем результат для урока 4 в localStorage
+      localStorage.setItem("lesson4Score", score);
+  }
+  
+  document.addEventListener("DOMContentLoaded", function () {
+      function showSection(sectionId) {
+          if (sectionId === "assignments") {
+              sectionId = "tasks-section";
+          }
+          document.querySelectorAll(".content-section").forEach(section => {
+              section.style.display = "none";
+          });
+          document.getElementById(sectionId).style.display = "block";
+      }
+  
+      // Делаем функцию доступной глобально для inline onclick
+      window.showSection = showSection;
+  
+      // По умолчанию показываем секцию "Документ"
+      showSection("document");
+
+      function markVideoWatched(videoElement) {
+  let videoId = videoElement.getAttribute('data-video-id');
+  if (!localStorage.getItem("video" + videoId + "_watched")) {
+    localStorage.setItem("video" + videoId + "_watched", "true");
+  }
+}
+
+  });
+</script>
+</body>
+</html>

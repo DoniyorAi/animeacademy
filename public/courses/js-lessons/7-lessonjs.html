@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Урок 8: Практика – Создание мини‑приложения – Аниме-Академия</title>
+  <!-- Google Fonts + Animate.css -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <!-- Prism.js -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    body { 
+       margin:0; 
+       padding:0;
+       font-family:'Bangers', cursive;
+       background: url('https://i.pinimg.com/originals/0d/97/b6/0d97b6930cbe4495a64c5f4ff4cd7f89.jpg') no-repeat center center fixed; 
+       background-size:cover; 
+       color:#fff;
+       }
+
+    .card { 
+      width:100%; 
+      padding:20px; 
+      background:rgba(0,0,0,0.6);
+      box-sizing:border-box;
+       }
+
+    h1 { 
+       font-size:3.5rem;
+       text-align:center; 
+       text-shadow:2px 2px #000; 
+       margin-bottom:15px; 
+      }
+
+    p { 
+      text-align:center; 
+      margin-bottom:20px; 
+      font-size:2.5rem;
+     }
+
+    .nav-panel { 
+      display:flex;
+      justify-content:center; 
+      gap: 12px;
+      margin-bottom:20px; 
+      }
+
+    .nav-panel button { 
+      padding:8px 16px; 
+      background:rgba(255,255,255,0.1);
+      border:1px solid #fff; 
+      color:#fff;
+      font-size:2rem; 
+      cursor:pointer; 
+      border-radius:6px; 
+      }
+
+    .nav-panel button.active, .nav-panel button:hover { 
+      background:rgba(255,255,255,0.2); 
+    }
+
+    .content-section { 
+      display:none; 
+      animation:fadeIn 0.5s ease; 
+      margin-bottom:20px; 
+    }
+
+    .content-section.active {
+       display:block; 
+      }
+
+    @keyframes fadeIn { 
+      from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} 
+    }
+
+    textarea { 
+      width:100%; 
+      height:150px; 
+      margin:10px 0; 
+      padding:10px; 
+      font-family:monospace; 
+      font-size:1.5rem; 
+      background:rgba(0,0,0,0.7); 
+      color:#fff; 
+      border:1px solid #777; 
+      border-radius:6px; 
+      box-sizing:border-box; }
+
+    .button-group { 
+      display:flex; 
+      justify-content:center; 
+      gap:10px; 
+      margin:10px 0;
+     }
+
+    .button-group button { 
+      flex:1; 
+      padding:10px; 
+      font-size:2.2rem; 
+      border:none; 
+      border-radius:4px; 
+      cursor:pointer; 
+    }
+
+    .run-btn { 
+      background:#ff0055; 
+      color:#fff; 
+    }
+
+    .check-btn { 
+      background:#00bfff; 
+      color:#fff; 
+    }
+
+    .clear-btn { 
+      background:#ffcc00; 
+      color:#000; 
+    }
+
+    #preview { 
+      width:100%; 
+      height:300px; 
+      border:1px solid #444; 
+      border-radius:6px; 
+      margin-top:10px; 
+      background:rgba(255,255,255,0.1); }
+
+    #judge0-output { 
+      width:100%; 
+      margin-top:10px; 
+      padding:10px;
+      background:#111; 
+      color:#0f0; 
+      font-family:monospace;
+      white-space:pre-wrap; 
+      border-radius:4px;
+      display:none; 
+    }
+    .content-section h2{
+text-align: center;
+font-size: 2rem;
+    }
+    video{
+      margin-left: auto;
+    margin-right: auto;
+    display: block
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Урок 8: Практика – Создание мини‑приложения</h1>
+    <p>Здесь ты создашь мини‑приложение, используя HTML, CSS и JavaScript.</p>
+    <div class="nav-panel">
+      <button class="active" onclick="showSection('document', event)">Документ</button>
+      <button onclick="showSection('video', event)">Видео</button>
+      <button onclick="showSection('assignments', event)">Задания</button>
+    </div>
+    <div id="document" class="content-section active">
+      <h2>Теория</h2>
+      <p>Разбей задачу на части и применяй полученные навыки.</p>
+    </div>
+    <div id="video" class="content-section">
+      <h2>Видео урок</h2>
+      <div style="text-align:center;">
+      <iframe width="640" height="360" src="https://drive.google.com/file/d/1PD1QEtvhFsubrB1MIhWGDwQ6kdZTN02C/preview" 
+      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen></iframe>  
+      </div>
+    </div>
+    <div id="assignments" class="content-section">
+      <h2>Редактор Live HTML</h2>
+      <textarea id="liveHtml" placeholder="HTML и CSS..."></textarea>
+      <textarea id="jsCode" placeholder="JavaScript код..."></textarea>
+      <div class="button-group">
+        <button class="run-btn" onclick="runCode()">🚀 Запустить</button>
+        <button class="check-btn" onclick="checkWithJudge0()">💡 Проверить ИИ</button>
+        <button class="clear-btn" onclick="clearEditor()">🧹 Очистить</button>
+      </div>
+      <iframe id="preview"></iframe>
+      <div id="judge0-output"></div>
+    </div>
+  </div>
+  <script>
+    function showSection(id, event) {
+      document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.nav-panel button').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+    function runCode() {
+      const html = document.getElementById('liveHtml').value;
+      const js = document.getElementById('jsCode').value;
+      const frame = document.getElementById('preview');
+      const doc = frame.contentDocument || frame.contentWindow.document;
+      const content = `
+        <!DOCTYPE html>
+        <html>
+        <head><style>body{font-family:Arial;padding:10px;}</style></head>
+        <body>
+          ${html}
+          <div id="log" style="background:#f1f1f1;padding:10px;font-family:monospace;margin-top:10px;"></div>
+          <script>
+            const log = document.getElementById('log');
+            console.log = msg => { log.innerHTML += msg + '<br>'; };
+            try { ${js} } catch(e) { log.innerHTML += 'Ошибка: ' + e.message; }
+          <\/script>
+        </body>
+        </html>`;
+      doc.open(); doc.write(content); doc.close();
+    }
+    function clearEditor() {
+      document.getElementById('liveHtml').value = '';
+      document.getElementById('jsCode').value = '';
+      document.getElementById('preview').srcdoc = '';
+      const out = document.getElementById('judge0-output'); out.style.display='none'; out.innerText='';
+    }
+    async function checkWithJudge0() {
+      const code = document.getElementById('jsCode').value;
+      const out = document.getElementById('judge0-output');
+      out.style.display = 'block'; out.innerText = '⏳ Проверка...';
+      try {
+        const sub = await axios.post('https://judge0-ce.p.rapidapi.com/submissions',{ source_code: code, language_id:63 },{ headers:{ 'Content-Type':'application/json','X-RapidAPI-Key':'94bc138fe4msh270578b0d824c6bp1f0351jsn00d14b8ae2d6','X-RapidAPI-Host':'judge0-ce.p.rapidapi.com' }});
+        let res;
+        for(let i=0;i<10;i++){ res=await axios.get(`https://judge0-ce.p.rapidapi.com/submissions/${sub.data.token}`,{ headers:{ 'X-RapidAPI-Key':'94bc138fe4msh270578b0d824c6bp1f0351jsn00d14b8ae2d6','X-RapidAPI-Host':'judge0-ce.p.rapidapi.com' }}); if(res.data.status.id>2) break; await new Promise(r=>setTimeout(r,500)); }
+        out.innerText = res.data.stdout||res.data.stderr||res.data.compile_output||'Нет вывода.';
+      } catch { out.innerText='❌ Ошибка при проверке.'; }
+    }
+  </script>
+</body>
+</html>

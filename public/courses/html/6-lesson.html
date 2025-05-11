@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тестирование</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-image: url('https://avatars.mds.yandex.net/i?id=5b860fd5bc29f0eee5c97a36d8a083ad_l-5303693-images-thumbs&ref=rim&n=13&w=1280&h=720'); 
+            color: white; 
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            background: white; 
+            color: black; 
+        }
+        th, td { 
+            border: 1px solid black; 
+            padding: 8px; 
+            text-align: left; 
+        }
+        th { 
+            background: #f4a42d; 
+            color: white; 
+        }
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .lesson-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 10px;
+        }
+        h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            text-shadow: 2px 2px 0 #ff0055;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        .tabs a {
+            color: #ffcb05;
+            text-decoration: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .tabs a:hover {
+            color: #ff0055;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        body {
+            font-size: 20px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            line-height: 1.6;
+            word-spacing: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="lesson-container">
+    <h1>Урок 6: Гиперссылки и навигация</h1>
+    <p>В этом уроке мы рассмотрим, как создавать гиперссылки с помощью тега &lt;a&gt;, управлять их поведением с помощью атрибутов href, target и rel, а также как группировать навигационные элементы с помощью семантического тега &lt;nav&gt;. Эти знания помогут вам создавать удобные и доступные навигационные меню на ваших сайтах.</p>
+    
+    <nav class="tabs">
+        <a id="doc-tab">Документ</a>
+        <a id="video-tab">Видео</a>
+        <a id="tasks-tab">Задания</a>
+    </nav>
+    
+    <div id="document-section" class="content-section active">
+        <h2>Теория</h2>
+        <p>
+            Тег &lt;a&gt; позволяет создавать гиперссылки для перехода на другие страницы или ресурсы. Атрибут <code>href</code> указывает адрес ссылки, а <code>target</code> определяет, где открывать ссылку (например, <code>_blank</code> для новой вкладки). Семантический тег &lt;nav&gt; группирует ссылки навигационного меню, что улучшает структуру страницы и её доступность.
+        </p>
+    </div>
+    
+
+    <div id="video-section" class="content-section">
+        <h2>Видео урок</h2>
+        <p>Посмотри видео о гиперссылках в HTML.</p>
+        <div style="text-align:center;">
+        <iframe width="640" height="360" src="https://drive.google.com/file/d/1YeJQK7GcKvI-BQ77aVGOZF5TMmtiQOig/preview" 
+        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div id="tasks-section" class="content-section">
+        <h1>Тест по гиперссылкам в HTML</h1>
+        <form id="quizForm">
+            <table>
+                <tr>
+                    <th>Вопрос</th>
+                    <th>Ваш ответ</th>
+                </tr>
+                <tr>
+                    <td>Как добавить текстовую альтернативу к изображению?</td>
+                    <td><input type="text" name="q1"></td>
+                </tr>
+                <tr>
+                    <td>Как сделать ссылку, открывающуюся в новой вкладке?</td>
+                    <td><input type="text" name="q2"></td>
+                </tr>
+                <tr>
+                    <td>Как сделать ссылку на электронную почту?</td>
+                    <td><input type="text" name="q3"></td>
+                </tr>
+                <tr>
+                    <td>Как сделать активную ссылку в навигации?</td>
+                    <td><input type="text" name="q4"></td>
+                </tr>
+            </table>
+            <br>
+            <button type="button" onclick="checkAnswers()">Отправить</button>
+        </form>
+        <h2 id="result"></h2>
+    </div>
+</div>
+
+<script>
+    function checkAnswers() {
+        let answers = {
+            q1: "alt",
+            q2: "target=\"_blank\"",
+            q3: "mailto:",
+            q4: "class=\"active\""
+        };
+        let form = document.getElementById("quizForm");
+        let resultText = "";
+        let score = 0;
+
+        for (let key in answers) {
+            let userAnswer = form.elements[key].value.trim();
+            if (userAnswer === answers[key]) {
+                score += 10;
+                resultText += `✅ Ответ на вопрос \"${key}\" — верный! (+10 баллов)<br>`;
+            } else {
+                resultText += `❌ Ответ на вопрос \"${key}\" — неверный. Правильный ответ: ${answers[key]}<br>`;
+            }
+        }
+        resultText += `<br><strong>Итоговый балл: ${score}</strong>`;
+        document.getElementById("result").innerHTML = resultText;
+        localStorage.setItem("lesson6Score", score);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        function showSection(sectionId) {
+            document.querySelectorAll(".content-section").forEach(section => {
+                section.classList.remove("active");
+            });
+            document.getElementById(sectionId).classList.add("active");
+        }
+
+        document.getElementById("doc-tab").addEventListener("click", () => showSection("document-section"));
+        document.getElementById("video-tab").addEventListener("click", () => showSection("video-section"));
+        document.getElementById("tasks-tab").addEventListener("click", () => showSection("tasks-section"));
+
+        let videoElement = document.getElementById("lesson-video");
+        let videoKey = "video6_watched";
+
+        if (videoElement) {
+            videoElement.addEventListener("play", function() {
+                if (!localStorage.getItem(videoKey)) {
+                    localStorage.setItem(videoKey, "true");
+                    console.log("Видео просмотрено и сохранено в localStorage.");
+                }
+            });
+        }
+
+        let watchedVideos = Object.keys(localStorage).filter(key => key.startsWith("video") && localStorage.getItem(key) === "true").length;
+        let videoCountElement = document.getElementById("video-count");
+        
+        if (videoCountElement) {
+            videoCountElement.textContent = watchedVideos;
+        }
+    });
+</script>
+</body>
+</html>

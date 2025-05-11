@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title><%= assignment.title %></title>
+</head>
+<body>
+  <h1><%= assignment.title %></h1>
+  <p><%= assignment.description %></p>
+  <p>Вопрос: <%= assignment.question %></p>
+  <form action="/assignments/<%= assignment._id %>" method="POST">
+    <label>Ваш ответ:</label><br>
+    <textarea name="studentAnswer" required></textarea><br>
+    <button type="submit">Отправить ответ</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Урок 4: События и DOM – Аниме-Академия</title>
+  <!-- Подключаем Google Fonts (Bangers) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <!-- Подключаем Animate.css для базовых анимаций -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    /* Фон для всей страницы */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Bangers', cursive;
+      background: url('https://shikimori.one/system/screenshots/original/56d41061c3318112bbbdec225d0198a428d1fb26.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    /* Карточка на всю страницу */
+    .card {
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    .card h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 0 #000;
+    }
+    .card p {
+      font-size: 1.8rem;
+      line-height: 1.5;
+      max-width: 800px;
+      margin-bottom: 30px;
+    }
+    /* Навигационная панель */
+    .nav-panel {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    .nav-panel button {
+      padding: 10px 20px;
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.5);
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .nav-panel button:hover,
+    .nav-panel button.active {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.05);
+    }
+    /* Секции контента */
+    .content-section {
+      display: none;
+      animation: fadeIn 0.7s ease;
+      margin-bottom: 20px;
+    }
+    .content-section.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .content-section h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #ffcb05;
+      text-shadow: 2px 2px 0 #000;
+    }
+    .content-section p {
+      font-size: 1.4rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    /* Кнопка "Проверить ответы" */
+    #submit-quiz {
+      display: inline-block;
+      padding: 10px 25px;
+      background: #ff0055;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    #submit-quiz:hover {
+      background: #ff3366;
+      transform: scale(1.05);
+    }
+    #quiz-result {
+      margin-top: 20px;
+      font-size: 1.5rem;
+    }
+    /* Стили для правой колонки с изображением */
+    .lesson-image {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 50%;
+      height: 100vh;
+      background: url('your-js-lesson1-image.jpg') no-repeat center center;
+      background-size: cover;
+      z-index: -1;
+      opacity: 0.8;
+    }
+    /* Адаптив */
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+      .lesson-image {
+        position: static;
+        width: 100%;
+        height: 300px;
+      }
+      .card {
+        margin: 20px;
+      }
+    }
+    #document p {
+      font-size: 28px;
+    }
+    /* ---------- Стили для таблицы теста ---------- */
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 90%;
+      max-width: 800px;
+      background-color: rgba(255,255,255,0.5);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    table th {
+      background-color: rgba(212, 170, 90, 0.3);
+      color: #fff;
+      padding: 15px;
+      text-align: left;
+      font-size: 1.5rem;
+    }
+    table td {
+      background-color: rgba(213, 159, 51, 0.3);
+      color: #ffffff;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      font-size: 1.3rem;
+      font-weight: 200;
+    }
+    table tr:hover td {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+    table tr:last-child td {
+      border-bottom: none;
+    }
+    table input[type="text"] {
+      width: 100%;
+      padding: 6px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button[type="button"] {
+      background-color: #b9a360;
+      color: #fff;
+      padding: 10px 25px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 20px auto;
+      display: block;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button[type="button"]:hover {
+      background-color: #ff3366;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- Правая колонка -->
+  <div class="lesson-image"></div>
+  
+  <!-- Карточка на всю страницу -->
+  <div class="card">
+    <h1>Урок 4: События и DOM</h1>
+    <p>
+        В этом уроке ты узнаешь, как обрабатывать события, управлять элементами страницы и создавать интерактивные интерфейсы с помощью JavaScript.
+    </p>
+    <!-- Навигационная панель -->
+    <div class="nav-panel">
+      <button class="active" onclick="showSection('document', event)">Документ</button>
+      <button onclick="showSection('video', event)">Видео</button>
+      <button onclick="showSection('tasks-section', event)">Задания</button>
+    </div>
+    
+    <!-- Секции контента -->
+    <div id="document" class="content-section active">
+      <h2>Теория</h2>
+      <p>
+        События – это действия, которые происходят на странице (например, клики, нажатия клавиш, наведение курсора). С помощью JavaScript можно обрабатывать эти события, менять DOM, создавать анимации и динамический контент.
+      </p>
+      <p>
+        В этом уроке мы рассмотрим, как назначать обработчики событий, использовать методы добавления и удаления элементов, а также как работать с объектом события.
+      </p>
+    </div>
+    <div id="video" class="content-section">
+      <h2>Видео урок</h2>
+      <iframe width="640" height="360" src="https://drive.google.com/file/d/10SmJBQTyxbMgPubRoFaZ7xyr8-4-XxQA/preview" 
+      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen></iframe>  
+      
+      
+    </div>
+    <div id="tasks-section" class="content-section">
+      <h1>Тест по событиям и DOM</h1>
+      <form id="quizForm">
+        <table>
+          <tr>
+            <th>Вопрос</th>
+            <th>Ваш ответ</th>
+          </tr>
+          <tr>
+            <td>Что такое событие в JavaScript?</td>
+            <td><input type="text" name="q1"></td>
+          </tr>
+          <tr>
+            <td>Как можно отловить событие?</td>
+            <td><input type="text" name="q2"></td>
+          </tr>
+          <tr>
+            <td>Как сделать так, чтобы при клике на кнопку выполнялось действие?</td>
+            <td><input type="text" name="q3"></td>
+          </tr>
+          <tr>
+            <td>Как отменить стандартное действие элемента (например, отменить отправку формы)?</td>
+            <td><input type="text" name="q4"></td>
+          </tr>
+          <tr>
+            <td>Как получить элемент по его id?</td>
+            <td><input type="text" name="q5"></td>
+          </tr>
+          <tr>
+            <td>Как изменить HTML внутри элемента?</td>
+            <td><input type="text" name="q6"></td>
+          </tr>
+        </table>
+        <button type="button" onclick="checkAnswers()">Отправить</button>
+      </form>
+      <h2 id="result"></h2>
+    </div>
+  </div>
+    
+  <p style="font-size: 1rem; margin-top: 30px;">
+    Ваш гид – Dr. Stone
+  </p>
+  
+  <!-- Скрипты -->
+  <script>
+    function checkAnswers() {
+      // Правильные ответы для каждого вопроса
+      let answers = {
+        q1: "Событие — это действие пользователя или браузера (клик, нажатие клавиши, загрузка страницы и т. д.)",
+        q2: "element.addEventListener(\"событие\", функция)",
+        q3: "button.addEventListener(\"click\", функция)",
+        q4: "event.preventDefault()",
+        q5: "document.getElementById(\"id\")",
+        q6: "element.innerHTML = \"<strong> </strong>\""
+      };
+      let form = document.getElementById("quizForm");
+      let resultText = "";
+      let score = 0;
+  
+      // Проверка ответов
+      for (let key in answers) {
+        let userAnswer = form.elements[key].value.trim();
+        if (userAnswer === answers[key]) {
+          score += 10;
+          resultText += `✅ Ответ на вопрос "${key}" — верный! (+10 баллов)<br>`;
+        } else {
+          resultText += `❌ Ответ на вопрос "${key}" — неверный. Правильный ответ: ${answers[key]}<br>`;
+        }
+      }
+      resultText += `<br><strong>Итоговый балл: ${score}</strong>`;
+      document.getElementById("result").innerHTML = resultText;
+  
+      // Сохраняем результат для урока 4 в localStorage
+      localStorage.setItem("lesson4Score", score);
+    }
+  
+    function showSection(sectionId, event) {
+      document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+      document.querySelectorAll('.nav-panel button').forEach(btn => btn.classList.remove('active'));
+      if (event) {
+        event.target.classList.add('active');
+      }
+    }
+
+    function markVideoWatched(videoElement) {
+  let videoId = videoElement.getAttribute('data-video-id');
+  if (!localStorage.getItem("video" + videoId + "_watched")) {
+    localStorage.setItem("video" + videoId + "_watched", "true");
+  }
+}
+
+  </script>
+  
+  
+  <!-- Подключаем Anime.js для анимаций -->
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+</body>
+</html>
+  
